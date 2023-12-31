@@ -13,25 +13,47 @@ struct PlayerView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Circle()
-                    .frame(width: 250)
+                PlayerImageView(imageSize: 200, imageData: player.photo)
+                    .padding(.vertical)
                 
                 Group { // player core data
-                    Text("Jersey number")
-                    Text("Position")
-                    Text("Height")
-                    Text("Date of Birth")
+                    Text("#\(player.jerseyNumber)")
+                    Text(player.position)
+                    Text("\(player.height) cm")
                 }
+                .italic()
+                .fontWeight(.semibold)
                 
                 Divider()
                 
-                Group { // key stat summary; goals, assists, pass completion
-                    Text("Summary Stats")
+                VStack(alignment: .leading) {
+                    LabeledContent("Date of Birth:", value: "January 5, 2007")
+                    LabeledContent("Height:", value: "\(player.height) cm")
+                    LabeledContent("Club:", value: "\(player.club)")
+                    LabeledContent("High School:", value: "\(player.highSchool)")
+                    LabeledContent("Phone:", value: "571-255-0187")
+                    LabeledContent("Email:", value: "nfl_noah@icloud.com")
                 }
+                .padding(.horizontal)
                 
                 Divider()
                 
-                Text("Game info") // number of games played, link to game list
+                VStack(alignment: .leading) { // key stat summary; goals, assists, pass completion
+                    LabeledContent("Goals:", value: "3")
+                    LabeledContent("Assists:", value: "5")
+                    LabeledContent("Shots on Goal:", value: "12")
+                    LabeledContent("Pass Completion:", value: "75.3%")
+                }
+                .padding(.horizontal)
+                
+                Divider()
+                
+                Button {
+                    
+                } label: {
+                    Text("5 Games Tracked")
+                }
+                .buttonStyle(.borderedProminent)
                 
                 Spacer()
             }

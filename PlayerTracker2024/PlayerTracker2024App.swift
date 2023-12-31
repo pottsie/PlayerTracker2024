@@ -14,7 +14,7 @@ struct PlayerTracker2024App: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlayerListView()
         }
         .modelContainer(container)
     }

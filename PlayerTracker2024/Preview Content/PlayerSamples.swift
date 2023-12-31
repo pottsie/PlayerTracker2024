@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Player {
     static var samplePlayers: [Player] {
@@ -13,14 +14,15 @@ extension Player {
             Player(
                 firstName: "Noah",
                 lastName: "Potts",
-                position: "CDM",
+                position: "Center Defensive Midfield",
                 jerseyNumber: "6",
                 dateOfBirth: Date.now,
                 height: 165,
                 club: "SCAA",
                 highSchool: "South County",
                 phone: "5712550187",
-                emailAddress: "nfl_noah@icloud.com"
+                emailAddress: "nfl_noah@icloud.com",
+                photo: UIImage(named: "rowan")!.pngData()
             ),
             Player(
                 firstName: "George",
