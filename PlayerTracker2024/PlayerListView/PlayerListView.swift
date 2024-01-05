@@ -9,17 +9,43 @@ import SwiftData
 import SwiftUI
 
 struct PlayerListView: View {
+    @Query private var players: [Player]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(players) { player in
+                    HStack {
+                        PlayerImageView(imageSize: 70, imageData: player.photo)
+                        
+                        VStack(alignment: .leading) {
+                            Text(player.fullName)
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Text(player.position)
+                                .italic()
+                        }
+                    }
+                }
+            }
+            .listStyle(.plain)
         }
-        .padding()
+        .navigationTitle("Players")
+        .toolbar {
+            Button {
+                
+            } label: {
+                Image(systemName: "plus")
+            }
+        }
     }
 }
 
 #Preview {
-    PlayerListView()
+    let preview = Preview(Player.self)
+    preview.addExamples(Player.samplePlayers)
+    return NavigationStack {
+        PlayerListView()
+            .modelContainer(preview.container)
+    }
 }

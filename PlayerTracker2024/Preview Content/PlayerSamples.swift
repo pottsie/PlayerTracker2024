@@ -35,6 +35,18 @@ extension Player {
                 highSchool: "Hayfield",
                 phone: "8888881234",
                 emailAddress: "george@gmail.com"
+            ),
+            Player(
+                firstName: "Curt",
+                lastName: "Jackson",
+                position: "Center Back",
+                jerseyNumber: "99",
+                dateOfBirth: Date.now,
+                height: 158,
+                club: "Alexandria",
+                highSchool: "Carman",
+                phone: "1234567890",
+                emailAddress: "gamer@gmail.com"
             )
         ]
     }

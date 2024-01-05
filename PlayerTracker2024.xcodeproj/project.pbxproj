@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27BCB1652B479C3C002C894D /* AddPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BCB1642B479C3C002C894D /* AddPlayerView.swift */; };
 		27CDB2CB2B4077E100F6F5D6 /* PlayerTracker2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */; };
 		27CDB2CD2B4077E100F6F5D6 /* PlayerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CDB2CC2B4077E100F6F5D6 /* PlayerListView.swift */; };
 		27CDB2CF2B4077E500F6F5D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CDB2CE2B4077E500F6F5D6 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27BCB1642B479C3C002C894D /* AddPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerView.swift; sourceTree = "<group>"; };
 		27CDB2C72B4077E100F6F5D6 /* PlayerTracker2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerTracker2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTracker2024App.swift; sourceTree = "<group>"; };
 		27CDB2CC2B4077E100F6F5D6 /* PlayerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListView.swift; sourceTree = "<group>"; };
@@ -42,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27BCB1632B479BFF002C894D /* AddUpdatePlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				27BCB1642B479C3C002C894D /* AddPlayerView.swift */,
+			);
+			path = AddUpdatePlayerView;
+			sourceTree = "<group>";
+		};
 		27CDB2BE2B4077E100F6F5D6 = {
 			isa = PBXGroup;
 			children = (
@@ -63,9 +73,10 @@
 			children = (
 				27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */,
 				27CDB2E62B40F13900F6F5D6 /* PlayerListView */,
-				27CDB2D82B40781500F6F5D6 /* Models */,
+				27BCB1632B479BFF002C894D /* AddUpdatePlayerView */,
 				27CDB2DC2B407B6E00F6F5D6 /* PlayerView */,
 				27CDB2DF2B407DE000F6F5D6 /* Helper Views */,
+				27CDB2D82B40781500F6F5D6 /* Models */,
 				27CDB2CE2B4077E500F6F5D6 /* Assets.xcassets */,
 				27CDB2D02B4077E500F6F5D6 /* Preview Content */,
 			);
@@ -191,6 +202,7 @@
 				27CDB2DA2B40782400F6F5D6 /* Player.swift in Sources */,
 				27CDB2CB2B4077E100F6F5D6 /* PlayerTracker2024App.swift in Sources */,
 				27CDB2DE2B407BB500F6F5D6 /* PlayerView.swift in Sources */,
+				27BCB1652B479C3C002C894D /* AddPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
