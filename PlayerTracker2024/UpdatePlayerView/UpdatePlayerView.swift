@@ -1,5 +1,5 @@
 //
-//  AddPlayerView.swift
+//  UpdatePlayerView.swift
 //  PlayerTracker2024
 //
 //  Created by Michael Potts on 1/4/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddPlayerView: View {
+struct UpdatePlayerView: View {
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var position: String = ""
@@ -85,6 +85,6 @@ struct AddPlayerView: View {
 
 #Preview {
     NavigationStack {
-        AddPlayerView()
+        UpdatePlayerView()
     }
 }
