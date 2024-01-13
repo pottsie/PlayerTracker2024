@@ -25,15 +25,26 @@ struct PlayerImageView: View {
                 .foregroundColor(highlightColor)
                 .frame(width: imageSize, height: imageSize)
                 .shadow(color: highlightColor, radius: 10, x: 0, y: 0)
-            Image("rowan") // need to convert from Data
-                .resizable()
-                .scaledToFill()
-                .clipShape(Circle())
-                .frame(width: imageSize, height: imageSize)
+            
+            if let playerImageData = imageData {
+                let uiImage = UIImage(data: playerImageData)
+                Image(uiImage: uiImage!)
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .frame(width: imageSize, height: imageSize)
+            } else {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .foregroundStyle(Color.orange)
+                    .frame(width: imageSize * 0.5, height: imageSize * 0.5)
+            }
         }
     }
 }
 
 #Preview {
-    PlayerImageView(imageData: nil)
+    let preview = Preview(Player.self)
+    return PlayerImageView(imageData: Player.samplePlayers[0].photo)
+        .modelContainer(preview.container)
 }

@@ -13,13 +13,13 @@ struct PlayerView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                PlayerImageView(imageSize: 200, imageData: player.photo)
+                PlayerImageView(imageSize: 225, imageData: player.photo)
                     .padding(.vertical)
                 
                 Group { // player core data
                     Text("#\(player.jerseyNumber)")
                     Text(player.position)
-                    Text("\(player.height) cm")
+//                    Text("\(player.height) cm")
                 }
                 .italic()
                 .fontWeight(.semibold)
@@ -27,12 +27,13 @@ struct PlayerView: View {
                 Divider()
                 
                 VStack(alignment: .leading) {
-                    LabeledContent("Date of Birth:", value: "January 5, 2007")
+//                    LabeledContent("Date of Birth:", value: "January 5, 2007")
+                    LabeledContent("Date of Birth:", value: player.dateOfBirth.formatted(date: .long, time: .omitted))
                     LabeledContent("Height:", value: "\(player.height) cm")
                     LabeledContent("Club:", value: "\(player.club)")
                     LabeledContent("High School:", value: "\(player.highSchool)")
-                    LabeledContent("Phone:", value: "571-255-0187")
-                    LabeledContent("Email:", value: "nfl_noah@icloud.com")
+                    LabeledContent("Phone:", value: "\(player.phone)")
+                    LabeledContent("Email:", value: "\(player.emailAddress)")
                 }
                 .padding(.horizontal)
                 
@@ -66,7 +67,7 @@ struct PlayerView: View {
 #Preview {
     let preview = Preview(Player.self)
     return NavigationStack {
-        PlayerView(player: Player.samplePlayers[0])
+        PlayerView(player: Player.samplePlayers[1])
             .modelContainer(preview.container)
     }
 }

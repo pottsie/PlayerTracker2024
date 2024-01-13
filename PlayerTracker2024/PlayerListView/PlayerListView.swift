@@ -9,33 +9,47 @@ import SwiftData
 import SwiftUI
 
 struct PlayerListView: View {
-    @Query private var players: [Player]
+//    @Query private var players: [Player]
+    @Environment(\.modelContext) private var context
+    @Query(sort: [SortDescriptor(\Player.lastName)]) private var players: [Player]
+    @State private var createNewPlayer = false
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(players) { player in
-                    HStack {
-                        PlayerImageView(imageSize: 70, imageData: player.photo)
-                        
-                        VStack(alignment: .leading) {
-                            Text(player.fullName)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Text(player.position)
-                                .italic()
+            Group {
+                if players.isEmpty {
+                    ContentUnavailableView("Enter your first player", systemImage: "person.fill")
+                        .foregroundStyle(Color.orange)
+                } else {
+                    List {
+                        ForEach(players) { player in
+                            NavigationLink {
+                                PlayerView(player: player)
+                            } label: {
+                                PlayerListItem(player: player)
+                            }
+                        }
+                        .onDelete { indexSet in
+                            indexSet.forEach { index in
+                                let player = players[index]
+                                context.delete(player)
+                            }
                         }
                     }
+                    .listStyle(.plain)
                 }
             }
-            .listStyle(.plain)
-        }
-        .navigationTitle("Players")
-        .toolbar {
-            Button {
-                
-            } label: {
-                Image(systemName: "plus")
+            .navigationTitle("Players")
+            .sheet(isPresented: $createNewPlayer) {
+                NewPlayerView()
+                    .presentationDetents([.medium])
+            }
+            .toolbar {
+                Button {
+                    createNewPlayer.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }

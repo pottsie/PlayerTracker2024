@@ -20,7 +20,7 @@ extension Player {
                 height: 165,
                 club: "SCAA",
                 highSchool: "South County",
-                phone: "5712550187",
+                phone: "571-255-0187",
                 emailAddress: "nfl_noah@icloud.com",
                 photo: UIImage(named: "rowan")!.pngData()
             ),
@@ -33,7 +33,7 @@ extension Player {
                 height: 172,
                 club: "LMVSC",
                 highSchool: "Hayfield",
-                phone: "8888881234",
+                phone: "888-888-1234",
                 emailAddress: "george@gmail.com"
             ),
             Player(
@@ -45,7 +45,7 @@ extension Player {
                 height: 158,
                 club: "Alexandria",
                 highSchool: "Carman",
-                phone: "1234567890",
+                phone: "123-456-7890",
                 emailAddress: "gamer@gmail.com"
             )
         ]
