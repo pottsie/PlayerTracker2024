@@ -52,7 +52,6 @@ struct PlayerView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     isEditingPlayer.toggle()
-//                    UpdatePlayer(player: player)
                 } label: {
                     Text("Edit")
 //                    Image(systemName: "pencil")
@@ -63,9 +62,6 @@ struct PlayerView: View {
         .fullScreenCover(isPresented: $isEditingPlayer, content: {
             UpdatePlayer(player: player)
         })
-//        .sheet(isPresented: $isEditingPlayer) {
-//            UpdatePlayer(player: player)
-//        }
     }
     
     func playerSoccerData() -> some View {

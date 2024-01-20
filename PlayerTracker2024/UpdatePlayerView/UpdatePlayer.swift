@@ -26,6 +26,19 @@ struct UpdatePlayer: View {
     var body: some View {
         NavigationStack {
             VStack {
+                
+                ZStack {
+                    PlayerImageView(imageData: photo)
+                        .padding(.vertical)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Click to change")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                
                 Group { // personal data
                     LabeledContent {
                         TextField("", text: $firstName)
@@ -47,7 +60,6 @@ struct UpdatePlayer: View {
                     } label: {
                         Text("Date of Birth").foregroundStyle(.secondary)
                     }
-//                    Text(dateOfBirth.formatted(date: .long, time: .omitted))
                     LabeledContent {
                         TextField("", text: $phone)
                     } label: {
@@ -103,23 +115,32 @@ struct UpdatePlayer: View {
                 club = player.club
             }
             .toolbar {
-                Button {
-                    player.firstName = firstName
-                    player.lastName = lastName
-                    player.height = height
-                    player.position = position
-                    player.dateOfBirth = dateOfBirth
-                    player.jerseyNumber = jerseyNumber
-                    player.highSchool = highSchool
-                    player.phone = phone
-                    player.emailAddress = emailAddress
-                    player.club = club
-                    dismiss()
-                } label: {
-                    Text("Update")
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
                 }
-                .buttonStyle(.bordered)
-                .disabled(!changed)
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        player.firstName = firstName
+                        player.lastName = lastName
+                        player.height = height
+                        player.position = position
+                        player.dateOfBirth = dateOfBirth
+                        player.jerseyNumber = jerseyNumber
+                        player.highSchool = highSchool
+                        player.phone = phone
+                        player.emailAddress = emailAddress
+                        player.club = club
+                        dismiss()
+                    } label: {
+                        Text("Update")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(!changed)
+                }
             }
         }
     }
