@@ -11,20 +11,24 @@ import SwiftUI
 struct PlayerListView: View {
 //    @Query private var players: [Player]
     @Environment(\.modelContext) private var context
-    @Query(sort: [SortDescriptor(\Player.lastName)]) private var players: [Player]
+    @Query(sort: [SortDescriptor(\Player.lastName), SortDescriptor(\Player.firstName)]) private var players: [Player]
     @State private var createNewPlayer = false
+    @State private var filter = ""
     
     var body: some View {
         NavigationStack {
+            //            PlayerList(filterString: filter)
             Group {
                 if players.isEmpty {
                     ContentUnavailableView("Enter your first player", systemImage: "person.fill")
-                        .foregroundStyle(Color.orange)
+                        .foregroundStyle(Color.black)
                 } else {
                     List {
                         ForEach(players) { player in
                             NavigationLink {
-                                PlayerView(player: player)
+                                //                            EditPlayerView(player: player)
+                                                            PlayerView(player: player)
+//                                UpdatePlayer(player: player)
                             } label: {
                                 PlayerListItem(player: player)
                             }
@@ -39,16 +43,26 @@ struct PlayerListView: View {
                     .listStyle(.plain)
                 }
             }
+            //                .searchable(text: $filter, prompt: "Search by player name")
             .navigationTitle("Players")
             .sheet(isPresented: $createNewPlayer) {
                 NewPlayerView()
                     .presentationDetents([.medium])
             }
             .toolbar {
-                Button {
-                    createNewPlayer.toggle()
-                } label: {
-                    Image(systemName: "plus")
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        // TODO: link to settings view
+                    } label: {
+                        Image(systemName: "gear")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        createNewPlayer.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
         }

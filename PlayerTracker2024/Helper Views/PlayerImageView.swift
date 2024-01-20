@@ -36,7 +36,7 @@ struct PlayerImageView: View {
             } else {
                 Image(systemName: "person.fill")
                     .resizable()
-                    .foregroundStyle(Color.orange)
+                    .foregroundStyle(Color.black)
                     .frame(width: imageSize * 0.5, height: imageSize * 0.5)
             }
         }

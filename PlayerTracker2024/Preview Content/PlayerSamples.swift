@@ -16,7 +16,7 @@ extension Player {
                 lastName: "Potts",
                 position: "Center Defensive Midfield",
                 jerseyNumber: "6",
-                dateOfBirth: Date.now,
+                dateOfBirth: dateFromISOString("2007-01-06"),
                 height: 165,
                 club: "SCAA",
                 highSchool: "South County",
@@ -29,7 +29,7 @@ extension Player {
                 lastName: "Smith",
                 position: "Goalie",
                 jerseyNumber: "25",
-                dateOfBirth: Date.now,
+                dateOfBirth: dateFromISOString("1966-09-20"),
                 height: 172,
                 club: "LMVSC",
                 highSchool: "Hayfield",
@@ -41,7 +41,7 @@ extension Player {
                 lastName: "Jackson",
                 position: "Center Back",
                 jerseyNumber: "99",
-                dateOfBirth: Date.now,
+                dateOfBirth: dateFromISOString("2010-01-11"),
                 height: 158,
                 club: "Alexandria",
                 highSchool: "Carman",
@@ -49,5 +49,11 @@ extension Player {
                 emailAddress: "gamer@gmail.com"
             )
         ]
+    }
+    
+    static func dateFromISOString(_ isoString: String) -> Date {
+        let isoDateFormatter = ISO8601DateFormatter()
+            isoDateFormatter.formatOptions = [.withFullDate]  // ignores time!
+            return isoDateFormatter.date(from: isoString)!
     }
 }

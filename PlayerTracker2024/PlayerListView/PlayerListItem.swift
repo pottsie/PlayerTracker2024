@@ -20,6 +20,7 @@ struct PlayerListItem: View {
                     .fontWeight(.semibold)
                 Text(player.position)
                     .italic()
+//                Text(player.dateOfBirth, style: .date)
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  UpdatePlayerView.swift
+//  EditPlayerView.swift
 //  PlayerTracker2024
 //
 //  Created by Michael Potts on 1/4/24.
@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct UpdatePlayerView: View {
+struct EditPlayerView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var position: String = ""
@@ -18,6 +20,9 @@ struct UpdatePlayerView: View {
     @State private var highSchool: String = ""
     @State private var phone: String = ""
     @State private var emailAddress: String = ""
+    @State private var photo: Data?
+    
+    let player: Player
     
     var body: some View {
         NavigationStack {
@@ -36,10 +41,18 @@ struct UpdatePlayerView: View {
                         Text("Last name").foregroundStyle(.secondary)
                     }
                     LabeledContent {
+                        DatePicker("", selection: $dateOfBirth, displayedComponents: .date)
+                    } label: {
+                        Text("Date of Birth")
+                    }
+                    .foregroundStyle(.secondary)
+                    LabeledContent {
                         TextField("", value: $height, format: .number)
                     } label: {
                         Text("Height (cm)").foregroundStyle(.secondary)
                     }
+                }
+                Group {
                     LabeledContent {
                         TextField("", text: $highSchool)
                     } label: {
@@ -56,6 +69,7 @@ struct UpdatePlayerView: View {
                         Text("Phone").foregroundStyle(.secondary)
                     }
                 }
+//            }
                 Divider()
                 Group { // soccer related player data
                     LabeledContent {
@@ -77,14 +91,48 @@ struct UpdatePlayerView: View {
                 Spacer()
             }
             .padding()
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .buttonStyle(.borderedProminent).tint(.red)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Text("Save")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            }
         }
         .textFieldStyle(.roundedBorder)
-        .navigationTitle("Add Player")
+        .navigationTitle("Edit Player")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            firstName = player.firstName
+            lastName = player.lastName
+            position = player.position
+            jerseyNumber = player.jerseyNumber
+            dateOfBirth = player.dateOfBirth
+            height = player.height
+            club = player.club
+            highSchool = player.highSchool
+            phone = player.phone
+            emailAddress = player.emailAddress
+            photo = player.photo
+        }
     }
 }
 
 #Preview {
-    NavigationStack {
-        UpdatePlayerView()
+    let preview = Preview(Player.self)
+    return NavigationStack {
+        EditPlayerView(player: Player.samplePlayers[0])
+            .modelContainer(preview.container)
     }
 }
