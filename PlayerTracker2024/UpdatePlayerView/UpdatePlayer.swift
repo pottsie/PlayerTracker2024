@@ -6,10 +6,12 @@
 //
 
 import SwiftData
+import PhotosUI
 import SwiftUI
 
 struct UpdatePlayer: View {
     let player: Player
+    @State private var selectedItem: PhotosPickerItem?
     @Environment(\.dismiss) private var dismiss
     @State private var firstName = ""
     @State private var lastName = ""
@@ -31,11 +33,14 @@ struct UpdatePlayer: View {
                     PlayerImageView(imageData: photo)
                         .padding(.vertical)
                     
-                    Button {
-                        
-                    } label: {
+                    PhotosPicker(selection: $selectedItem) {
                         Text("Click to change")
                     }
+//                    Button {
+//                        
+//                    } label: {
+//                        Text("Click to change")
+//                    }
                     .buttonStyle(.borderedProminent)
                 }
                 
@@ -102,6 +107,7 @@ struct UpdatePlayer: View {
             .navigationBarTitleDisplayMode(.inline)
             .textFieldStyle(.roundedBorder)
             .padding()
+            .onChange(of: selectedItem, loadPhoto)
             .onAppear {
                 firstName = player.firstName
                 lastName = player.lastName
@@ -134,6 +140,7 @@ struct UpdatePlayer: View {
                         player.phone = phone
                         player.emailAddress = emailAddress
                         player.club = club
+                        player.photo = photo
                         dismiss()
                     } label: {
                         Text("Update")
@@ -155,7 +162,14 @@ struct UpdatePlayer: View {
         highSchool != player.highSchool ||
         phone != player.phone ||
         emailAddress != player.emailAddress ||
-        club != player.club
+        club != player.club ||
+        photo != player.photo
+    }
+    
+    func loadPhoto() {
+        Task { @MainActor in
+            photo = try await selectedItem?.loadTransferable(type: Data.self)
+        }
     }
 }
 
