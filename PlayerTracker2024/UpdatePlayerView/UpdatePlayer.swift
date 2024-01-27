@@ -114,6 +114,7 @@ struct UpdatePlayer: View {
                 phone = player.phone
                 emailAddress = player.emailAddress
                 club = player.club
+                photo = player.photo
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
