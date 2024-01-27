@@ -36,11 +36,6 @@ struct UpdatePlayer: View {
                     PhotosPicker(selection: $selectedItem) {
                         Text("Click to change")
                     }
-//                    Button {
-//                        
-//                    } label: {
-//                        Text("Click to change")
-//                    }
                     .buttonStyle(.borderedProminent)
                 }
                 
