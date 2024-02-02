@@ -27,7 +27,7 @@ struct PlayerView: View {
                 
                 // TODO: This section needs to be developed when game data is added ******
                 VStack(alignment: .leading) { // key stat summary; goals, assists, pass completion
-                    LabeledContent("Goals:", value: "3")
+                    LabeledContent("Goals:", value: "\(player.goalsScored)")
                     LabeledContent("Assists:", value: "5")
                     LabeledContent("Shots on Goal:", value: "12")
                     LabeledContent("Pass Completion:", value: "75.3%")

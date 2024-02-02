@@ -21,6 +21,7 @@ class Player {
     var phone: String
     var emailAddress: String
     @Attribute(.externalStorage) var photo: Data?
+    var gamesPlayed: [Game]?
     
     init(
         firstName: String,
@@ -34,6 +35,7 @@ class Player {
         phone: String = "",
         emailAddress: String = "",
         photo: Data? = nil
+//        gamesPlayed: [Game]? = nil
     ) {
         self.firstName = firstName
         self.lastName = lastName
@@ -46,9 +48,22 @@ class Player {
         self.phone = phone
         self.emailAddress = emailAddress
         self.photo = photo
+//        self.gamesPlayed = gamesPlayed
     }
     
     var fullName: String {
         firstName + " " + lastName
+    }
+    
+    var goalsScored: Int {
+        var goals = 0
+        if let games = gamesPlayed {
+            for game in games {
+                goals += game.goals
+            }
+            return goals
+        } else {
+            return 0
+        }
     }
 }
