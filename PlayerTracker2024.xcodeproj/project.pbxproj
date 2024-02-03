@@ -100,8 +100,8 @@
 		27CDB2C92B4077E100F6F5D6 /* PlayerTracker2024 */ = {
 			isa = PBXGroup;
 			children = (
-				2758D6C32B6C55BD006C319D /* GameListView */,
 				27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */,
+				2758D6C32B6C55BD006C319D /* GameListView */,
 				27CDB2E62B40F13900F6F5D6 /* PlayerListView */,
 				276495A82B4B915600B67867 /* NewPlayerView */,
 				27BCB1632B479BFF002C894D /* UpdatePlayerView */,

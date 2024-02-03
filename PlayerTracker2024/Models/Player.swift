@@ -21,6 +21,7 @@ class Player {
     var phone: String
     var emailAddress: String
     @Attribute(.externalStorage) var photo: Data?
+    @Relationship(deleteRule: .cascade)
     var gamesPlayed: [Game]?
     
     init(
@@ -62,6 +63,18 @@ class Player {
                 goals += game.goals
             }
             return goals
+        } else {
+            return 0
+        }
+    }
+    
+    var assists: Int {
+        var assists = 0
+        if let games = gamesPlayed {
+            for game in games {
+                assists += game.assists
+            }
+            return assists
         } else {
             return 0
         }

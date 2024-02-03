@@ -85,6 +85,7 @@ struct GameListView: View {
                         }
                     }
                     .buttonStyle(.borderedProminent)
+                    .disabled(opponent.isEmpty)
                 }
             }
             .textFieldStyle(.roundedBorder)
@@ -94,16 +95,38 @@ struct GameListView: View {
         List {
             let sortedGames = player.gamesPlayed ?? []
             ForEach(sortedGames) { game in
-                VStack(alignment: .leading) {
-                    Text(game.dateOfGame, format: .dateTime.month().day().year())
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Text(game.opponent)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(game.dateOfGame, format: .dateTime.month().day().year())
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Text(game.opponent)
+                    }
+                    Spacer()
                     Text(game.gameResult)
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    selectedGame = game
+                    opponent = game.opponent
+                    opponentScore = game.opponentScore
+                    ourScore = game.ourScore
+                    goals = game.goals
+                    assists = game.assists
+                }
+            }
+            .onDelete { indexSet in
+                withAnimation {
+                    indexSet.forEach { index in
+                        if let game = player.gamesPlayed?[index] {
+                            modelContext.delete(game)
+                        }
+                    }
                 }
             }
         }
         .listStyle(.plain)
+        .navigationTitle("Games")
     }
 }
 
@@ -113,6 +136,7 @@ struct GameListView: View {
     preview.addExamples(players)
     return NavigationStack {
         GameListView(player: players[0])
+            .navigationBarTitleDisplayMode(.inline)
             .modelContainer(preview.container)
     }
 }

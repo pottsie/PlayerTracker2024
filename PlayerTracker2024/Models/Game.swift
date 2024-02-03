@@ -49,11 +49,11 @@ class Game {
     
     var gameResult: String {
         if ourScore > opponentScore {
-            return "W \(ourScore)-\(opponentScore)"
+            return "W\(ourScore)-\(opponentScore)"
         } else if ourScore < opponentScore {
-            return "L \(opponentScore)-\(ourScore)"
+            return "L\(opponentScore)-\(ourScore)"
         } else {
-            return "D \(ourScore)-\(opponentScore)"
+            return "D\(ourScore)-\(opponentScore)"
         }
     }
     
