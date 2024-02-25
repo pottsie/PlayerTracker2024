@@ -18,8 +18,8 @@ class Game {
     var assists: Int
 //    var shots: Int
 //    var shotsOnGoal: Int
-//    var passAttempts: Int
-//    var passCompletions: Int
+    var passAttempts: Int
+    var passCompletions: Int
     
     init(
         opponent: String,
@@ -27,11 +27,11 @@ class Game {
         ourScore: Int = 0,
         dateOfGame: Date = Date.now,
         goals: Int = 0,
-        assists: Int = 0
+        assists: Int = 0,
 //        shots: Int = 0,
 //        shotsOnGoal: Int = 0,
-//        passAttempts: Int = 0,
-//        passCompletions: Int = 0
+        passAttempts: Int = 0,
+        passCompletions: Int = 0
     ) {
         self.opponent = opponent
         self.opponentScore = opponentScore
@@ -41,8 +41,8 @@ class Game {
         self.assists = assists
 //        self.shots = shots
 //        self.shotsOnGoal = shotsOnGoal
-//        self.passAttempts = passAttempts
-//        self.passCompletions = passCompletions
+        self.passAttempts = passAttempts
+        self.passCompletions = passCompletions
     }
     
     var player: Player?

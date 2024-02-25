@@ -10,6 +10,7 @@ import SwiftUI
 struct PlayerView: View {
     var player: Player
     @State private var isEditingPlayer = false
+//    @State private var viewSwitch = false
     
     var body: some View {
         NavigationStack {
@@ -29,8 +30,8 @@ struct PlayerView: View {
                 VStack(alignment: .leading) { // key stat summary; goals, assists, pass completion
                     LabeledContent("Goals:", value: "\(player.goalsScored)")
                     LabeledContent("Assists:", value: "\(player.assists)")
-                    LabeledContent("Shots on Goal:", value: "12")
-                    LabeledContent("Pass Completion:", value: "75.3%")
+//                    LabeledContent("Shots on Goal:", value: "12")
+                    LabeledContent("Pass Completion:", value: player.passingPercentage)
                 }
                 .padding(.horizontal)
                 
@@ -48,6 +49,9 @@ struct PlayerView: View {
 //                Spacer()
             }
         }
+//        .onAppear(perform: {
+//            viewSwitch.toggle()
+//        })
         .navigationTitle(player.fullName)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

@@ -15,6 +15,8 @@ struct GameListView: View {
     @State private var ourScore = 0
     @State private var goals = 0
     @State private var assists = 0
+    @State private var passAttempts = 0
+    @State private var passCompletions = 0
     @State private var selectedGame: Game?
     var isEditing: Bool {
         selectedGame != nil
@@ -31,21 +33,37 @@ struct GameListView: View {
                 LabeledContent("Opponent's score") {
                     TextField("", value: $opponentScore, format: .number)
                         .frame(width: 50)
+                        .keyboardType(.numberPad)
                     Spacer()
                 }
                 LabeledContent("Our score") {
                     TextField("", value: $ourScore, format: .number)
                         .frame(width: 50)
+                        .keyboardType(.numberPad)
                     Spacer()
                 }
                 LabeledContent("Goals") {
                     TextField("", value: $goals, format: .number)
                         .frame(width: 50)
+                        .keyboardType(.numberPad)
                     Spacer()
                 }
                 LabeledContent("Assists") {
                     TextField("", value: $assists, format: .number)
                         .frame(width: 50)
+                        .keyboardType(.numberPad)
+                    Spacer()
+                }
+                LabeledContent("Pass Attempts") {
+                    TextField("", value: $passAttempts, format: .number)
+                        .frame(width: 50)
+                        .keyboardType(.numberPad)
+                    Spacer()
+                }
+                LabeledContent("Pass Completions") {
+                    TextField("", value: $passCompletions, format: .number)
+                        .frame(width: 50)
+                        .keyboardType(.numberPad)
                     Spacer()
                 }
                 HStack {
@@ -56,6 +74,8 @@ struct GameListView: View {
                             ourScore = 0
                             goals = 0
                             assists = 0
+                            passAttempts = 0
+                            passCompletions = 0
                             selectedGame = nil
                         }
                         .buttonStyle(.borderedProminent)
@@ -68,20 +88,26 @@ struct GameListView: View {
                             selectedGame?.ourScore = ourScore
                             selectedGame?.goals = goals
                             selectedGame?.assists = assists
+                            selectedGame?.passAttempts = passAttempts
+                            selectedGame?.passCompletions = passCompletions
                             opponent = ""
                             opponentScore = 0
                             ourScore = 0
                             goals = 0
                             assists = 0
+                            passAttempts = 0
+                            passCompletions = 0
                             selectedGame = nil
                         } else {
-                            let game = Game(opponent: opponent, opponentScore: opponentScore, ourScore: ourScore, dateOfGame: Date.now, goals: goals, assists: assists)
+                            let game = Game(opponent: opponent, opponentScore: opponentScore, ourScore: ourScore, dateOfGame: Date.now, goals: goals, assists: assists, passAttempts: passAttempts, passCompletions: passCompletions)
                             player.gamesPlayed?.append(game)
                             opponent = ""
                             opponentScore = 0
                             ourScore = 0
                             goals = 0
                             assists = 0
+                            passAttempts = 0
+                            passCompletions = 0
                         }
                     }
                     .buttonStyle(.borderedProminent)
@@ -113,6 +139,8 @@ struct GameListView: View {
                     ourScore = game.ourScore
                     goals = game.goals
                     assists = game.assists
+                    passAttempts = game.passAttempts
+                    passCompletions = game.passCompletions
                 }
             }
             .onDelete { indexSet in

@@ -41,6 +41,7 @@
 		27CDB2E42B409E1D00F6F5D6 /* PlayerSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSamples.swift; sourceTree = "<group>"; };
 		27CE1DC82B5232F300764EA9 /* PlayerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListItem.swift; sourceTree = "<group>"; };
 		27D0EF182B65A139005D4367 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		27D1B16F2B8976BD00C641E5 /* PT2024.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PT2024.playground; path = ../../PT2024.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		27E31D5E2B59FC5C006DBE56 /* UpdatePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePlayer.swift; sourceTree = "<group>"; };
 		27FD8B302B57458D0055DBBC /* PlayerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +101,7 @@
 		27CDB2C92B4077E100F6F5D6 /* PlayerTracker2024 */ = {
 			isa = PBXGroup;
 			children = (
+				27D1B16F2B8976BD00C641E5 /* PT2024.playground */,
 				27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */,
 				2758D6C32B6C55BD006C319D /* GameListView */,
 				27CDB2E62B40F13900F6F5D6 /* PlayerListView */,

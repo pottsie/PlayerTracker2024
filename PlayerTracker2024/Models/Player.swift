@@ -79,4 +79,27 @@ class Player {
             return 0
         }
     }
+    
+    var passingPercentage: String {
+        var passAttempts = 0
+        var passCompletions = 0
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .percent
+        
+        if let games = gamesPlayed {
+            for game in games {
+                passAttempts += game.passAttempts
+                passCompletions += game.passCompletions
+            }
+            if passAttempts > 0 {
+                let passingCompletions = Double(passCompletions) / Double(passAttempts)
+                let passingCompletionsPercentage = numberFormatter.string(for: passingCompletions)
+                return passingCompletionsPercentage ?? "0.0%"
+            } else {
+                return "0.0%"
+            }
+        } else {
+            return "0.0%"
+        }
+    }
 }
