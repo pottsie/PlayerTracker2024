@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GameListView: View {
     @Environment(\.modelContext) private var modelContext
-    let player: Player
+//    let player: Player
+    @Binding var games: [Game]?
     @State private var opponent = ""
     @State private var opponentScore = 0
     @State private var ourScore = 0
@@ -100,7 +101,8 @@ struct GameListView: View {
                             selectedGame = nil
                         } else {
                             let game = Game(opponent: opponent, opponentScore: opponentScore, ourScore: ourScore, dateOfGame: Date.now, goals: goals, assists: assists, passAttempts: passAttempts, passCompletions: passCompletions)
-                            player.gamesPlayed?.append(game)
+//                            player.gamesPlayed?.append(game)
+                            games?.append(game)
                             opponent = ""
                             opponentScore = 0
                             ourScore = 0
@@ -119,7 +121,8 @@ struct GameListView: View {
         }
         .padding(.horizontal)
         List {
-            let sortedGames = player.gamesPlayed ?? []
+//            let sortedGames = player.gamesPlayed ?? []
+            let sortedGames = games ?? []
             ForEach(sortedGames) { game in
                 HStack {
                     VStack(alignment: .leading) {
@@ -146,7 +149,8 @@ struct GameListView: View {
             .onDelete { indexSet in
                 withAnimation {
                     indexSet.forEach { index in
-                        if let game = player.gamesPlayed?[index] {
+//                        if let game = player.gamesPlayed?[index] {
+                        if let game = games?[index] {
                             modelContext.delete(game)
                         }
                     }
@@ -158,13 +162,13 @@ struct GameListView: View {
     }
 }
 
-#Preview {
-    let preview = Preview(Player.self)
-    let players = Player.samplePlayers
-    preview.addExamples(players)
-    return NavigationStack {
-        GameListView(player: players[0])
-            .navigationBarTitleDisplayMode(.inline)
-            .modelContainer(preview.container)
-    }
-}
+//#Preview {
+//    let preview = Preview(Player.self)
+//    let players = Player.samplePlayers
+//    preview.addExamples(players)
+//    return NavigationStack {
+//        GameListView(player: players[0])
+//            .navigationBarTitleDisplayMode(.inline)
+//            .modelContainer(preview.container)
+//    }
+//}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerView: View {
-    var player: Player
+    @Bindable var player: Player
     @State private var isEditingPlayer = false
 //    @State private var viewSwitch = false
     
@@ -37,7 +37,8 @@ struct PlayerView: View {
                 
                 Divider()
                 NavigationLink {
-                    GameListView(player: player)
+//                    GameListView(player: player)
+                    GameListView(games: $player.gamesPlayed)
                 } label: {
                     let count = player.gamesPlayed?.count ?? 0
                     Text("^[\(count) Games](inflect: true)")
