@@ -23,6 +23,9 @@ extension Player {
                 phone: "571-255-0187",
                 emailAddress: "nfl_noah@icloud.com",
                 photo: UIImage(named: "rowan")!.pngData()
+//                gamesPlayed: [
+//                    Game(opponent: "SYC", opponentScore: 0, ourScore: 2, dateOfGame: Date.now, goals: 1, assists: 1, shots: 4, shotsOnGoal: 2, passAttempts: 9, passCompletions: 5)
+//                ]
             ),
             Player(
                 firstName: "George",

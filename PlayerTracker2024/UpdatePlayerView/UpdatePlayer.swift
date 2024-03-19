@@ -27,123 +27,129 @@ struct UpdatePlayer: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                
-                ZStack {
-                    PlayerImageView(imageData: photo)
-                        .padding(.vertical)
+            ScrollView {
+                VStack {
                     
-                    PhotosPicker(selection: $selectedItem) {
-                        Text("Click to change")
+                    ZStack {
+                        PlayerImageView(imageData: photo)
+                            .padding(.vertical)
+                        
+                        PhotosPicker(selection: $selectedItem) {
+                            Text("Click to change")
+                        }
+                        .buttonStyle(.borderedProminent)
                     }
-                    .buttonStyle(.borderedProminent)
+                    
+                    Group { // personal data
+                        LabeledContent {
+                            TextField("", text: $firstName)
+                        } label: {
+                            Text("First name").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", text: $lastName)
+                        } label: {
+                            Text("Last name").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", value: $height, format: .number)
+                                .keyboardType(.numberPad)
+                        } label: {
+                            Text("Height (cm)").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            DatePicker("", selection: $dateOfBirth, in: ...Date.now, displayedComponents: .date)
+                        } label: {
+                            Text("Date of Birth").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", text: $phone)
+                        } label: {
+                            Text("Phone").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", text: $emailAddress)
+                        } label: {
+                            Text("Email").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", text: $highSchool)
+                                .textInputAutocapitalization(.words)
+                        } label: {
+                            Text("High School").foregroundStyle(.secondary)
+                        }
+                    }
+                    
+                    Group { // soccer data
+                        LabeledContent {
+                            TextField("", text: $position)
+                        } label: {
+                            Text("Position").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", text: $jerseyNumber)
+                                .keyboardType(.numberPad)
+                        } label: {
+                            Text("Jersey number").foregroundStyle(.secondary)
+                        }
+                        LabeledContent {
+                            TextField("", text: $club)
+                                .textInputAutocapitalization(.words)
+                        } label: {
+                            Text("Club").foregroundStyle(.secondary)
+                        }
+                    }
+                    
+                    Spacer()
+                    
                 }
-                
-                Group { // personal data
-                    LabeledContent {
-                        TextField("", text: $firstName)
-                    } label: {
-                        Text("First name").foregroundStyle(.secondary)
-                    }
-                    LabeledContent {
-                        TextField("", text: $lastName)
-                    } label: {
-                        Text("Last name").foregroundStyle(.secondary)
-                    }
-                    LabeledContent {
-                        TextField("", value: $height, format: .number)
-                    } label: {
-                        Text("Height (cm)").foregroundStyle(.secondary)
-                    }
-                    LabeledContent {
-                        DatePicker("", selection: $dateOfBirth, in: ...Date.now, displayedComponents: .date)
-                    } label: {
-                        Text("Date of Birth").foregroundStyle(.secondary)
-                    }
-                    LabeledContent {
-                        TextField("", text: $phone)
-                    } label: {
-                        Text("Phone").foregroundStyle(.secondary)
-                    }
-                    LabeledContent {
-                        TextField("", text: $emailAddress)
-                    } label: {
-                        Text("Email").foregroundStyle(.secondary)
-                    }
-                    LabeledContent {
-                        TextField("", text: $highSchool)
-                    } label: {
-                        Text("High School").foregroundStyle(.secondary)
-                    }
+                .navigationTitle("Edit Player")
+                .navigationBarTitleDisplayMode(.inline)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .onChange(of: selectedItem, loadPhoto)
+                .onAppear {
+                    firstName = player.firstName
+                    lastName = player.lastName
+                    height = player.height
+                    dateOfBirth = player.dateOfBirth
+                    position = player.position
+                    jerseyNumber = player.jerseyNumber
+                    highSchool = player.highSchool
+                    phone = player.phone
+                    emailAddress = player.emailAddress
+                    club = player.club
+                    photo = player.photo
                 }
-                
-                Group { // soccer data
-                    LabeledContent {
-                        TextField("", text: $position)
-                    } label: {
-                        Text("Position").foregroundStyle(.secondary)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Cancel")
+                        }
                     }
-                    LabeledContent {
-                        TextField("", text: $jerseyNumber)
-                    } label: {
-                        Text("Jersey number").foregroundStyle(.secondary)
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            player.firstName = firstName
+                            player.lastName = lastName
+                            player.height = height
+                            player.position = position
+                            player.dateOfBirth = dateOfBirth
+                            player.jerseyNumber = jerseyNumber
+                            player.highSchool = highSchool
+                            player.phone = phone
+                            player.emailAddress = emailAddress
+                            player.club = club
+                            player.photo = photo
+                            dismiss()
+                        } label: {
+                            Text("Update")
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!changed)
                     }
-                    LabeledContent {
-                        TextField("", text: $club)
-                    } label: {
-                        Text("Club").foregroundStyle(.secondary)
-                    }
-                }
-                
-                Spacer()
-                
             }
-            .navigationTitle("Edit Player")
-            .navigationBarTitleDisplayMode(.inline)
-            .textFieldStyle(.roundedBorder)
-            .padding()
-            .onChange(of: selectedItem, loadPhoto)
-            .onAppear {
-                firstName = player.firstName
-                lastName = player.lastName
-                height = player.height
-                dateOfBirth = player.dateOfBirth
-                position = player.position
-                jerseyNumber = player.jerseyNumber
-                highSchool = player.highSchool
-                phone = player.phone
-                emailAddress = player.emailAddress
-                club = player.club
-                photo = player.photo
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Cancel")
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        player.firstName = firstName
-                        player.lastName = lastName
-                        player.height = height
-                        player.position = position
-                        player.dateOfBirth = dateOfBirth
-                        player.jerseyNumber = jerseyNumber
-                        player.highSchool = highSchool
-                        player.phone = phone
-                        player.emailAddress = emailAddress
-                        player.club = club
-                        player.photo = photo
-                        dismiss()
-                    } label: {
-                        Text("Update")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(!changed)
-                }
             }
         }
     }

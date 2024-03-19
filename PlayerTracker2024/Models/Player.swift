@@ -21,6 +21,8 @@ class Player {
     var phone: String
     var emailAddress: String
     @Attribute(.externalStorage) var photo: Data?
+    @Relationship(deleteRule: .cascade)
+    var gamesPlayed: [Game]?
     
     init(
         firstName: String,
@@ -34,6 +36,7 @@ class Player {
         phone: String = "",
         emailAddress: String = "",
         photo: Data? = nil
+//        gamesPlayed: [Game]? = nil
     ) {
         self.firstName = firstName
         self.lastName = lastName
@@ -46,9 +49,57 @@ class Player {
         self.phone = phone
         self.emailAddress = emailAddress
         self.photo = photo
+//        self.gamesPlayed = gamesPlayed
     }
     
     var fullName: String {
         firstName + " " + lastName
+    }
+    
+    var goalsScored: Int {
+        var goals = 0
+        if let games = gamesPlayed {
+            for game in games {
+                goals += game.goals
+            }
+            return goals
+        } else {
+            return 0
+        }
+    }
+    
+    var assists: Int {
+        var assists = 0
+        if let games = gamesPlayed {
+            for game in games {
+                assists += game.assists
+            }
+            return assists
+        } else {
+            return 0
+        }
+    }
+    
+    var passingPercentage: String {
+        var passAttempts = 0
+        var passCompletions = 0
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .percent
+        
+        if let games = gamesPlayed {
+            for game in games {
+                passAttempts += game.passAttempts
+                passCompletions += game.passCompletions
+            }
+            if passAttempts > 0 {
+                let passingCompletions = Double(passCompletions) / Double(passAttempts)
+                let passingCompletionsPercentage = numberFormatter.string(for: passingCompletions)
+                return passingCompletionsPercentage ?? "0.0%"
+            } else {
+                return "0.0%"
+            }
+        } else {
+            return "0.0%"
+        }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2758D6C52B6C55D6006C319D /* GameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2758D6C42B6C55D6006C319D /* GameListView.swift */; };
 		276495AA2B4B91A700B67867 /* NewPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276495A92B4B91A700B67867 /* NewPlayerView.swift */; };
 		27BCB1652B479C3C002C894D /* EditPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BCB1642B479C3C002C894D /* EditPlayerView.swift */; };
 		27CDB2CB2B4077E100F6F5D6 /* PlayerTracker2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */; };
@@ -19,11 +20,13 @@
 		27CDB2E32B409D4300F6F5D6 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CDB2E22B409D4300F6F5D6 /* PreviewContainer.swift */; };
 		27CDB2E52B409E1D00F6F5D6 /* PlayerSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CDB2E42B409E1D00F6F5D6 /* PlayerSamples.swift */; };
 		27CE1DC92B5232F300764EA9 /* PlayerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CE1DC82B5232F300764EA9 /* PlayerListItem.swift */; };
+		27D0EF192B65A139005D4367 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0EF182B65A139005D4367 /* Game.swift */; };
 		27E31D5F2B59FC5C006DBE56 /* UpdatePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E31D5E2B59FC5C006DBE56 /* UpdatePlayer.swift */; };
 		27FD8B312B57458D0055DBBC /* PlayerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FD8B302B57458D0055DBBC /* PlayerList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2758D6C42B6C55D6006C319D /* GameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListView.swift; sourceTree = "<group>"; };
 		276495A92B4B91A700B67867 /* NewPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlayerView.swift; sourceTree = "<group>"; };
 		27BCB1642B479C3C002C894D /* EditPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlayerView.swift; sourceTree = "<group>"; };
 		27CDB2C72B4077E100F6F5D6 /* PlayerTracker2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerTracker2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +40,8 @@
 		27CDB2E22B409D4300F6F5D6 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		27CDB2E42B409E1D00F6F5D6 /* PlayerSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSamples.swift; sourceTree = "<group>"; };
 		27CE1DC82B5232F300764EA9 /* PlayerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListItem.swift; sourceTree = "<group>"; };
+		27D0EF182B65A139005D4367 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		27D1B16F2B8976BD00C641E5 /* PT2024.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PT2024.playground; path = ../../PT2024.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		27E31D5E2B59FC5C006DBE56 /* UpdatePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePlayer.swift; sourceTree = "<group>"; };
 		27FD8B302B57458D0055DBBC /* PlayerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2758D6C32B6C55BD006C319D /* GameListView */ = {
+			isa = PBXGroup;
+			children = (
+				2758D6C42B6C55D6006C319D /* GameListView.swift */,
+			);
+			path = GameListView;
+			sourceTree = "<group>";
+		};
 		276495A82B4B915600B67867 /* NewPlayerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,7 +101,9 @@
 		27CDB2C92B4077E100F6F5D6 /* PlayerTracker2024 */ = {
 			isa = PBXGroup;
 			children = (
+				27D1B16F2B8976BD00C641E5 /* PT2024.playground */,
 				27CDB2CA2B4077E100F6F5D6 /* PlayerTracker2024App.swift */,
+				2758D6C32B6C55BD006C319D /* GameListView */,
 				27CDB2E62B40F13900F6F5D6 /* PlayerListView */,
 				276495A82B4B915600B67867 /* NewPlayerView */,
 				27BCB1632B479BFF002C894D /* UpdatePlayerView */,
@@ -115,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				27CDB2D92B40782400F6F5D6 /* Player.swift */,
+				27D0EF182B65A139005D4367 /* Game.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,7 +233,9 @@
 			files = (
 				27CDB2E32B409D4300F6F5D6 /* PreviewContainer.swift in Sources */,
 				27E31D5F2B59FC5C006DBE56 /* UpdatePlayer.swift in Sources */,
+				2758D6C52B6C55D6006C319D /* GameListView.swift in Sources */,
 				27CDB2E12B407DFA00F6F5D6 /* PlayerImageView.swift in Sources */,
+				27D0EF192B65A139005D4367 /* Game.swift in Sources */,
 				276495AA2B4B91A700B67867 /* NewPlayerView.swift in Sources */,
 				27CDB2E52B409E1D00F6F5D6 /* PlayerSamples.swift in Sources */,
 				27CDB2CD2B4077E100F6F5D6 /* PlayerListView.swift in Sources */,
