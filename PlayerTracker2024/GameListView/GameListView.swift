@@ -25,98 +25,100 @@ struct GameListView: View {
     
     var body: some View {
         GroupBox {
-            VStack {
-                LabeledContent("Opponent") {
-                    TextField("opponent name", text: $opponent)
-                        .autocorrectionDisabled()
-                    
-                }
-                LabeledContent("Opponent's score") {
-                    TextField("", value: $opponentScore, format: .number)
-                        .frame(width: 50)
-                        .keyboardType(.numberPad)
-                    Spacer()
-                }
-                LabeledContent("Our score") {
-                    TextField("", value: $ourScore, format: .number)
-                        .frame(width: 50)
-                        .keyboardType(.numberPad)
-                    Spacer()
-                }
-                LabeledContent("Goals") {
-                    TextField("", value: $goals, format: .number)
-                        .frame(width: 50)
-                        .keyboardType(.numberPad)
-                    Spacer()
-                }
-                LabeledContent("Assists") {
-                    TextField("", value: $assists, format: .number)
-                        .frame(width: 50)
-                        .keyboardType(.numberPad)
-                    Spacer()
-                }
-                LabeledContent("Pass Attempts") {
-                    TextField("", value: $passAttempts, format: .number)
-                        .frame(width: 50)
-                        .keyboardType(.numberPad)
-                    Spacer()
-                }
-                LabeledContent("Pass Completions") {
-                    TextField("", value: $passCompletions, format: .number)
-                        .frame(width: 50)
-                        .keyboardType(.numberPad)
-                    Spacer()
-                }
-                HStack {
-                    if isEditing {
-                        Button("Cancel") {
-                            opponent = ""
-                            opponentScore = 0
-                            ourScore = 0
-                            goals = 0
-                            assists = 0
-                            passAttempts = 0
-                            passCompletions = 0
-                            selectedGame = nil
+            ScrollView {
+                VStack {
+                    LabeledContent("Opponent") {
+                        TextField("opponent name", text: $opponent)
+                            .autocorrectionDisabled()
+                        
+                    }
+                    LabeledContent("Opponent's score") {
+                        TextField("", value: $opponentScore, format: .number)
+                            .frame(width: 50)
+                            .keyboardType(.numberPad)
+                        Spacer()
+                    }
+                    LabeledContent("Our score") {
+                        TextField("", value: $ourScore, format: .number)
+                            .frame(width: 50)
+                            .keyboardType(.numberPad)
+                        Spacer()
+                    }
+                    LabeledContent("Goals") {
+                        TextField("", value: $goals, format: .number)
+                            .frame(width: 50)
+                            .keyboardType(.numberPad)
+                        Spacer()
+                    }
+                    LabeledContent("Assists") {
+                        TextField("", value: $assists, format: .number)
+                            .frame(width: 50)
+                            .keyboardType(.numberPad)
+                        Spacer()
+                    }
+                    LabeledContent("Pass Attempts") {
+                        TextField("", value: $passAttempts, format: .number)
+                            .frame(width: 50)
+                            .keyboardType(.numberPad)
+                        Spacer()
+                    }
+                    LabeledContent("Pass Completions") {
+                        TextField("", value: $passCompletions, format: .number)
+                            .frame(width: 50)
+                            .keyboardType(.numberPad)
+                        Spacer()
+                    }
+                    HStack {
+                        if isEditing {
+                            Button("Cancel") {
+                                opponent = ""
+                                opponentScore = 0
+                                ourScore = 0
+                                goals = 0
+                                assists = 0
+                                passAttempts = 0
+                                passCompletions = 0
+                                selectedGame = nil
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        Spacer()
+                        Button(isEditing ? "Update" : "Create") {
+                            if isEditing {
+                                selectedGame?.opponent = opponent
+                                selectedGame?.opponentScore = opponentScore
+                                selectedGame?.ourScore = ourScore
+                                selectedGame?.goals = goals
+                                selectedGame?.assists = assists
+                                selectedGame?.passAttempts = passAttempts
+                                selectedGame?.passCompletions = passCompletions
+                                opponent = ""
+                                opponentScore = 0
+                                ourScore = 0
+                                goals = 0
+                                assists = 0
+                                passAttempts = 0
+                                passCompletions = 0
+                                selectedGame = nil
+                            } else {
+                                let game = Game(opponent: opponent, opponentScore: opponentScore, ourScore: ourScore, dateOfGame: Date.now, goals: goals, assists: assists, passAttempts: passAttempts, passCompletions: passCompletions)
+    //                            player.gamesPlayed?.append(game)
+                                games?.append(game)
+                                opponent = ""
+                                opponentScore = 0
+                                ourScore = 0
+                                goals = 0
+                                assists = 0
+                                passAttempts = 0
+                                passCompletions = 0
+                            }
                         }
                         .buttonStyle(.borderedProminent)
+                        .disabled(opponent.isEmpty)
                     }
-                    Spacer()
-                    Button(isEditing ? "Update" : "Create") {
-                        if isEditing {
-                            selectedGame?.opponent = opponent
-                            selectedGame?.opponentScore = opponentScore
-                            selectedGame?.ourScore = ourScore
-                            selectedGame?.goals = goals
-                            selectedGame?.assists = assists
-                            selectedGame?.passAttempts = passAttempts
-                            selectedGame?.passCompletions = passCompletions
-                            opponent = ""
-                            opponentScore = 0
-                            ourScore = 0
-                            goals = 0
-                            assists = 0
-                            passAttempts = 0
-                            passCompletions = 0
-                            selectedGame = nil
-                        } else {
-                            let game = Game(opponent: opponent, opponentScore: opponentScore, ourScore: ourScore, dateOfGame: Date.now, goals: goals, assists: assists, passAttempts: passAttempts, passCompletions: passCompletions)
-//                            player.gamesPlayed?.append(game)
-                            games?.append(game)
-                            opponent = ""
-                            opponentScore = 0
-                            ourScore = 0
-                            goals = 0
-                            assists = 0
-                            passAttempts = 0
-                            passCompletions = 0
-                        }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(opponent.isEmpty)
                 }
+                .textFieldStyle(.roundedBorder)
             }
-            .textFieldStyle(.roundedBorder)
             
         }
         .padding(.horizontal)
@@ -162,13 +164,13 @@ struct GameListView: View {
     }
 }
 
-//#Preview {
-//    let preview = Preview(Player.self)
-//    let players = Player.samplePlayers
-//    preview.addExamples(players)
-//    return NavigationStack {
-//        GameListView(player: players[0])
-//            .navigationBarTitleDisplayMode(.inline)
-//            .modelContainer(preview.container)
-//    }
-//}
+#Preview {
+    let preview = Preview(Player.self)
+    let players = Player.samplePlayers
+    preview.addExamples(players)
+    return NavigationStack {
+        GameListView(games: .constant(players[0].gamesPlayed))
+            .navigationBarTitleDisplayMode(.inline)
+            .modelContainer(preview.container)
+    }
+}
